@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>旋转动画</title>
+	<style id="css">	
+	</style>
+</head>
+<body>
+	<svg id="svg1"  version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 1000 1000" xml:space="preserve">
+		<symbol id="single">
+			<path d="M213.105,250h-26.211C166.603,250,150,233.397,150,213.105v-26.211
+	C150,166.603,166.603,150,186.895,150h26.211C233.397,150,250,166.603,250,186.895v26.211C250,233.397,233.397,250,213.105,250z" style="fill:#FF77b9;opacity:0.2""/>
+		</symbol>
+	 	<script type="text/javascript">
+			var aSvg=document.getElementById('svg1');
+			var oCss=document.getElementById("css");
+			for(i=1;i<7;i++){
+				var svgns ="http://www.w3.org/2000/svg"; 
+ 				var xlinkns ="http://www.w3.org/1999/xlink"; 
+				var oUse = document.createElementNS(svgns,'use');
+				oSvg=aSvg.appendChild(oUse);
+				oSvg.setAttribute("id", "leaf"+i);
+				oSvg.setAttributeNS(xlinkns,"xlink:href", "#single");
+				aSpeed=(i-1)/8;
+				oSpeed=(i-1)*30;
+				iSpeed=i*30;
+				oCss.innerHTML+=
+				"@keyframes leaf"+i+"{ 0%{opacity:0;transform:rotate("+oSpeed+"deg);transform-origin:200px 200px;}"+" 100%{transform:rotate("+iSpeed+"deg) scale("+Math.pow(1.2,i)+");transform-origin:200px 200px;}}"+
+				"#leaf"+i+"{animation:leaf"+i+" ease 0.1s both "+aSpeed+"s; }";
+				}		
+		</script>
+	</svg>
 
+
+</body>
+</html>
