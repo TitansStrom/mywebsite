@@ -2,30 +2,36 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>slider方块</title>
-	<link rel="stylesheet" href="css/slider.min.css">
+	<title>旋转动画</title>
+	<style id="css">	
+	</style>
 </head>
 <body>
-<div id="imgBar" style="margin:0 auto;width:100%;"><div class="slider-box" style="height: 360px;"></div></div>
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/slider1.2.min.js"></script>
-<script type="text/javascript">
-    $("#imgBar").slider({
-        imgs: [
-            "images/001.jpg",
-            "images/002.jpg",
-            "images/003.jpg"],
-        scale: 128 / 36,
-        border: true,
-        delay: 2200,
-        x: 10,
-        y: 3
-    });
+	<svg id="svg1"  version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 1000 1000" xml:space="preserve">
+		<symbol id="single">
+			<path d="M240,200c0,55.228-40,100-40,100s-40-44.772-40-100s40-100,40-100S240,144.772,240,200z" style="fill:#93278F;opacity:0.3""/>
+		</symbol>
+	 	<script type="text/javascript">
+			var aSvg=document.getElementById('svg1');
+			var oCss=document.getElementById("css");
+			for(i=1;i<37;i++){
+				var svgns ="http://www.w3.org/2000/svg"; 
+ 				var xlinkns ="http://www.w3.org/1999/xlink"; 
+				var oUse = document.createElementNS(svgns,'use');
+				oSvg=aSvg.appendChild(oUse);
+				oSvg.setAttribute("id", "leaf"+i);
+				oSvg.setAttributeNS(xlinkns,"xlink:href", "#single");
+				aSpeed=(i-1)/10;
+				oSpeed=(i-1)*10;
+				iSpeed=i*10;
+				oCss.innerHTML+=
+				"@keyframes leaf"+i+"{ 0%{opacity:0;transform:rotate("+oSpeed+"deg);transform-origin:300px 300px;}"+" 100%{transform:rotate("+iSpeed+"deg);transform-origin:300px 300px;}}"+
+				"#leaf"+i+"{animation:leaf"+i+" ease 0.1s both "+aSpeed+"s; }";
+				}		
+		</script>
+	</svg>
 
 
-function makeOpen(url){
-return eval('wind' + 'ow.o' + 'pen("'+url+'")');
-}
-</script>
 </body>
 </html>
